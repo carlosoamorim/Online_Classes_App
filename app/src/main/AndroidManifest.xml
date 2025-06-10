@@ -13,6 +13,36 @@
         android:theme="@style/Theme.Online_Classes_App"
         tools:targetApi="31">
         <activity
+            android:name=".student.student_class_schedule"
+            android:exported="false" />
+        <activity
+            android:name=".student.student_dashboard"
+            android:exported="false" />
+        <activity
+            android:name=".professor.professor_check_presences"
+            android:exported="false" />
+        <activity
+            android:name=".professor.professor_dashboard"
+            android:exported="false" />
+        <activity
+            android:name=".admin.admin_add_class"
+            android:exported="false" />
+        <activity
+            android:name=".admin.admin_class_management"
+            android:exported="false" />
+        <activity
+            android:name=".auth.login"
+            android:exported="false" />
+        <activity
+            android:name=".admin.admin_dashboard"
+            android:exported="false" />
+        <activity
+            android:name=".auth.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity_login"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
