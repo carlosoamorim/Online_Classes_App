@@ -16,7 +16,7 @@
             android:name=".student.student_class_schedule"
             android:exported="false" />
         <activity
-            android:name=".student.student_dashboard"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".professor.professor_check_presences"
@@ -37,13 +37,7 @@
             android:name=".admin.admin_dashboard"
             android:exported="false" />
         <activity
-            android:name=".auth.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity_login"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".student.student_dashboard"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
