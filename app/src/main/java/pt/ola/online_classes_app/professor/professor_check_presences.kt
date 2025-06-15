@@ -4,6 +4,7 @@ package pt.ola.online_classes_app.professor
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -25,6 +26,19 @@ class professor_check_presences : AppCompatActivity() {
             insets
         }
 
+
+        // Retrieve course name and class time from the intent
+        val courseName = intent.getStringExtra("courseName") ?: "Unknown Course"
+        val classTime = intent.getStringExtra("classTime") ?: "Unknown Time"
+
+        val titleTextView = findViewById<TextView>(R.id.titleTextView)
+        val subtitleTextView = findViewById<TextView>(R.id.subtitleTextView)
+
+        titleTextView.text = courseName
+        subtitleTextView.text = classTime
+
+
+        // Initialize RecyclerView
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 

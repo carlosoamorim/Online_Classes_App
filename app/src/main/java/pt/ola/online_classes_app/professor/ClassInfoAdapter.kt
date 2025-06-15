@@ -41,7 +41,6 @@ class ClassInfoAdapter(
             val intent = Intent(context, professor_check_presences::class.java).apply {
                 putExtra("courseName", classInfo.courseName)
                 putExtra("classTime", classInfo.classTime)
-                putExtra("classRoom", classInfo.classRoom)
             }
             context.startActivity(intent)
         }
