@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".professor.professor_check_presences"
-    android:background="@color/background_green">
+    android:background="@color/background_pastel">
 
 
     <TextView
@@ -40,13 +40,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Home" />
+            android:text="Home"
+            android:backgroundTint="@color/background_dark_green"/>
 
         <Button
             android:id="@+id/classes_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Classes" />
+            android:text="Classes"
+            android:backgroundTint="@color/background_dark_green"/>
     </LinearLayout>
 </LinearLayout>

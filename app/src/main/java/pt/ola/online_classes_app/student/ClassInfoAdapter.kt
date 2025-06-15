@@ -18,7 +18,7 @@ class ClassInfoAdapter(private val classList: List<ClassInfo>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClassInfoViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.professor_item_class_info, parent, false)
+            .inflate(R.layout.student_item_class_info, parent, false)
         return ClassInfoViewHolder(view)
     }
 

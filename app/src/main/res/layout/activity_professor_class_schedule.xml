@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".professor.professor_class_schedule"
-    android:background="@color/background_green">
+    android:background="@color/background_pastel">
 
 
     <TextView
@@ -20,7 +20,7 @@
         android:layout_marginTop="60dp" />
 
 
-    <LinearLayout
+   <!-- <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -44,7 +44,7 @@
             android:backgroundTint="@color/background_light_green"
             android:textColor="@color/black"
             />
-    </LinearLayout>
+    </LinearLayout> -->
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -68,7 +68,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Home" />
+            android:text="Home"
+            android:backgroundTint="@color/background_dark_green"/>
 
     </LinearLayout>
 </LinearLayout>

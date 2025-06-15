@@ -34,6 +34,7 @@ class student_class_schedule : AppCompatActivity() {
         val classList = listOf(
             ClassInfo("Math 101", "10:00 AM - 11:00 AM", "Room A120"),
             ClassInfo("Physics 201", "11:30 AM - 12:30 PM", "Room B210"),
+            ClassInfo("Chemistry 301", "1:00 PM - 2:00 PM", "Room C310"),
             ClassInfo("Chemistry 301", "1:00 PM - 2:00 PM", "Room C310")
         )
 

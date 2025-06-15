@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".student.student_class_schedule"
-    android:background="@color/background_green">
+    android:background="@color/background_pastel">
 
 
     <TextView
@@ -16,10 +16,11 @@
         android:text="Class Schedule"
         android:textSize="44sp"
         android:textStyle="bold"
+
         android:layout_gravity="center"
         android:layout_marginTop="60dp" />
 
-
+<!--
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,6 +34,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Today"
+            android:backgroundTint="@color/background_dark_green"
+
             />
 
         <Button
@@ -41,10 +44,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="This week"
-            android:backgroundTint="@color/background_light_green"
-            android:textColor="@color/black"
+            android:backgroundTint="@color/background_dark_green"
+
             />
-    </LinearLayout>
+    </LinearLayout> -->
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -66,18 +69,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Home" />
+            android:text="Home"
+            android:backgroundTint="@color/background_dark_green"/>
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Classes" />
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Map" />
     </LinearLayout>
 </LinearLayout>
