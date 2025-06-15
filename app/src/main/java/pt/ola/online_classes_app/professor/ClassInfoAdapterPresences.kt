@@ -19,10 +19,10 @@ class ClassInfoAdapterPresences(
 ) : RecyclerView.Adapter<ClassInfoAdapterPresences.ClassInfoPresencesViewHolder>() {
 
     class ClassInfoPresencesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val courseName: TextView = itemView.findViewById(R.id.course_name)
-        val classTime: TextView = itemView.findViewById(R.id.class_time)
-        val classRoom: TextView = itemView.findViewById(R.id.class_room)
-        val itemButton: Button = itemView.findViewById(R.id.item_button)
+        val studentName: TextView = itemView.findViewById(R.id.student_name)
+        val studentEmail: TextView = itemView.findViewById(R.id.student_email)
+        val itemButton: Button = itemView.findViewById(R.id.item_button_present)
+        val itemButtonAbsent: Button = itemView.findViewById(R.id.item_button_absent)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClassInfoPresencesViewHolder {
@@ -33,15 +33,12 @@ class ClassInfoAdapterPresences(
 
     override fun onBindViewHolder(holder: ClassInfoPresencesViewHolder, position: Int) {
         val classInfo = classList[position]
-        holder.courseName.text = classInfo.courseName
-        holder.classTime.text = classInfo.classTime
-        holder.classRoom.text = classInfo.classRoom
+        holder.studentName.text = classInfo.studentName // Replace with student name
+        holder.studentEmail.text = classInfo.studentEmail // Replace with student email
         holder.itemButton.setOnClickListener {
-            // Pass parameters to professor_check_presences
             val intent = Intent(context, professor_check_presences::class.java).apply {
-                putExtra("courseName", classInfo.courseName)
-                putExtra("classTime", classInfo.classTime)
-                putExtra("classRoom", classInfo.classRoom)
+                putExtra("studentName", classInfo.studentName) // Replace with student name
+                putExtra("studentEmail", classInfo.studentEmail) // Replace with student email
             }
             context.startActivity(intent)
         }

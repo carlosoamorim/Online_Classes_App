@@ -31,8 +31,8 @@ class professor_check_presences : AppCompatActivity() {
 
         // Placeholders before API integration
         val classList = listOf(
-            ClassInfoPresences("Math 101", "10:00 AM - 11:00 AM", "Room A120"),
-            ClassInfoPresences("Physics 201", "11:30 AM - 12:30 PM", "Room B210"),
+            ClassInfoPresences("Alice Johnson", "alice.johnson@example.com"),
+            ClassInfoPresences("Bob Smith", "bob.smith@example.com"),
         )
         recyclerView.adapter = ClassInfoAdapterPresences(this, classList)
 

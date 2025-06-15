@@ -11,31 +11,40 @@
     android:focusable="true">
 
     <TextView
-        android:id="@+id/course_name"
+        android:id="@+id/student_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Course Name"
+        android:text="Student Name"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/class_time"
+        android:id="@+id/student_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Class Time"
+        android:text="Student Email"
         android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/class_room"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Class Room"
-        android:textSize="16sp" />
-    <Button
-        android:id="@+id/item_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Present"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@color/background_dark_green"/>
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:layout_marginTop="8dp">
+
+        <Button
+            android:id="@+id/item_button_present"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Present"
+
+            android:backgroundTint="@color/background_dark_green"/>
+
+        <Button
+            android:id="@+id/item_button_absent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Absent"
+            android:backgroundTint="@color/background_dark_green" />
+    </LinearLayout>
 </LinearLayout>
