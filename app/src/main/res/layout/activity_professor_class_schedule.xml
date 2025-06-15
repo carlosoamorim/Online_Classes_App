@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".student.student_class_schedule"
+    tools:context=".professor.professor_class_schedule"
     android:background="@color/background_green">
 
 
@@ -52,7 +52,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"/>
 
 
     <LinearLayout
@@ -68,16 +70,5 @@
             android:layout_weight="1"
             android:text="Home" />
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Classes" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Map" />
     </LinearLayout>
 </LinearLayout>

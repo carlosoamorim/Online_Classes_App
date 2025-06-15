@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:allowBackup="true"
@@ -11,7 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Online_Classes_App"
-        tools:targetApi="31" >
+        tools:targetApi="31">
+        <activity
+            android:name=".student.student_dashboard"
+            android:exported="false" />
         <activity
             android:name=".student.student_class_schedule"
             android:exported="false" />
@@ -22,7 +25,7 @@
             android:name=".professor.professor_check_presences"
             android:exported="false" />
         <activity
-            android:name=".professor.professor_dashboard"
+            android:name=".professor.professor_class_schedule"
             android:exported="false" />
         <activity
             android:name=".admin.admin_add_class"
@@ -37,8 +40,8 @@
             android:name=".admin.admin_dashboard"
             android:exported="false" />
         <activity
-            android:name=".student.student_dashboard"
-            android:exported="true" >
+            android:name=".professor.professor_dashboard"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
