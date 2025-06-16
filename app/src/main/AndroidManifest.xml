@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -39,6 +39,10 @@
         <activity
             android:name=".admin.students.AddOrEditStudent"
             android:exported="false" />
+      
+        <activity
+            android:name=".professor.professor_dashboard"
+            android:exported="false" />
 
         <activity android:name=".admin.teachers.AdminAddTeacher" />
         <activity android:name=".admin.teachers.AddOrEditTeacher" />
@@ -50,11 +54,13 @@
         <activity
             android:name=".auth.login"
             android:exported="false" />
-        <activity
-            android:name=".professor.professor_dashboard"
-            android:exported="false" />
+
         <activity
             android:name=".admin.admin_dashboard"
+            android:exported="false" />
+      
+        <activity
+            android:name=".auth.login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
