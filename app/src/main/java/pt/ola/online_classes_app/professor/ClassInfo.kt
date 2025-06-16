@@ -4,4 +4,5 @@ data class ClassInfo (
     val courseName: String,
     val classTime: String,
     val classRoom: String,
+    val teacherId: Int
 )

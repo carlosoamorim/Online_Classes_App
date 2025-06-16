@@ -12,7 +12,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import pt.ola.online_classes_app.R
-import pt.ola.online_classes_app.student.ClassInfo
 
 
 class professor_check_presences : AppCompatActivity() {

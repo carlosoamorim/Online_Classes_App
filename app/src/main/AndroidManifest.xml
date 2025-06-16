@@ -28,17 +28,37 @@
             android:name=".professor.professor_class_schedule"
             android:exported="false" />
         <activity
-            android:name=".admin.admin_add_class"
+            android:name=".admin.classes.AdminAddClass"
             android:exported="false" />
+        <activity android:name=".admin.classes.AddOrEditClassActivity" android:exported="false" />
+
         <activity
-            android:name=".admin.admin_class_management"
+            android:name=".admin.students.AdminAddStudent"
             android:exported="false" />
+
+        <activity
+            android:name=".admin.students.AddOrEditStudent"
+            android:exported="false" />
+      
         <activity
             android:name=".professor.professor_dashboard"
             android:exported="false" />
+
+        <activity android:name=".admin.teachers.AdminAddTeacher" />
+        <activity android:name=".admin.teachers.AddOrEditTeacher" />
+        <activity android:name=".admin.courses.AddOrEditCourse" />
+        <activity android:name=".admin.courses.AdminAddCourse" />
+        <activity android:name=".admin.courses.CourseStudentListActivity" />
+
+
+        <activity
+            android:name=".auth.login"
+            android:exported="false" />
+
         <activity
             android:name=".admin.admin_dashboard"
             android:exported="false" />
+      
         <activity
             android:name=".auth.login"
             android:exported="true">

@@ -1,0 +1,108 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background_pastel">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="24dp"
+            android:text="Add Teacher"
+            android:textColor="@color/background_dark_green"
+            android:textSize="35sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Full Name"
+            android:textColor="#555555"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editTeacherName"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edittext_box"
+            android:hint="Teacher Name"
+            android:padding="12dp" />
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Institutional Email"
+            android:textColor="#555555"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editTeacherEmail"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edittext_box"
+            android:hint="Teacher Email"
+            android:padding="12dp" />
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textColor="#555555"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editTeacherPassword"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edittext_box"
+            android:hint="Teacher Password"
+            android:padding="12dp" />
+
+
+        <Button
+            android:id="@+id/btnSaveTeacher"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/background_dark_green"
+            android:text="Sign up"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+</ScrollView>
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="16dp"
+        android:background="@drawable/back_button_bg"
+        android:src="@drawable/back_arrow_icon"
+        android:contentDescription="Back"
+        app:tint="@android:color/white" />
+
+</FrameLayout>
+
