@@ -1,0 +1,90 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background_pastel">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="24dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Arrange a Course"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                android:textColor="@color/background_dark_green"
+                android:layout_marginTop="60dp"
+                android:layout_marginBottom="24dp" />
+
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:text="Course Name"
+                android:textStyle="bold"
+                android:textColor="#555555"
+                android:textSize="16dp"/>
+
+            <EditText
+                android:id="@+id/editCourseName"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="10dp"
+                android:hint="Course Name"
+                android:background="@drawable/edittext_box"
+                android:padding="12dp" />
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:text="Teacher Email"
+                android:textStyle="bold"
+                android:textColor="#555555"
+                android:textSize="16dp"/>
+
+            <EditText
+                android:id="@+id/editTeacherName"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="10dp"
+                android:hint="Teacher Name"
+                android:background="@drawable/edittext_box"
+                android:padding="12dp" />
+
+
+            <Button
+                android:id="@+id/btnSaveCourse"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:text="Save Course"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="@color/background_dark_green"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="16dp"
+        android:background="@drawable/back_button_bg"
+        android:src="@drawable/back_arrow_icon"
+        android:contentDescription="Back"
+        app:tint="@android:color/white" />
+
+</FrameLayout>
