@@ -34,7 +34,7 @@ class AdminCourseAdapter(
     override fun onBindViewHolder(holder: CourseViewHolder, position: Int) {
         val course = courseList[position]
         holder.courseName.text = course.courseName
-        holder.teacherName.text = course.teacherName
+        holder.teacherName.text = "Prof.: ${course.teacherName}"
 
         holder.btnViewStudents.setOnClickListener {
             onViewStudentsClick(course)

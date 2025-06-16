@@ -1,11 +1,12 @@
 package pt.ola.online_classes_app.admin.courses
 
 import android.os.Bundle
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import pt.ola.online_classes_app.R
-import pt.ola.online_classes_app.admin.students.ClassInfoPresences
+import pt.ola.online_classes_app.admin.students.StudentInfo
 import pt.ola.online_classes_app.admin.students.StudentListAdapter
 
 class CourseStudentListActivity : AppCompatActivity() {
@@ -19,8 +20,8 @@ class CourseStudentListActivity : AppCompatActivity() {
 
         // Replace with real data or intent data if available
         val studentList = arrayListOf(
-            ClassInfoPresences("1", "Alice Smith", "alice@example.com", false),
-            ClassInfoPresences("2", "Bob Johnson", "bob@example.com", true)
+            StudentInfo("1", "Alice Smith", "alice@example.com", "SPass3",false),
+            StudentInfo("2", "Bob Johnson", "bob@example.com", "Spass4",true)
         )
 
         recyclerView = findViewById(R.id.studentRecyclerView)
@@ -30,14 +31,19 @@ class CourseStudentListActivity : AppCompatActivity() {
             studentList,
             onEnrollClick = { student ->
                 student.isEnrolled = true
-                // TODO: update database if needed
+                // TODO: update database
             },
             onUnenrollClick = { student ->
                 student.isEnrolled = false
-                // TODO: update database if needed
+                // TODO: update database
             }
         )
 
         recyclerView.adapter = adapter
+
+        findViewById<ImageButton>(R.id.backButton).setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
     }
 }

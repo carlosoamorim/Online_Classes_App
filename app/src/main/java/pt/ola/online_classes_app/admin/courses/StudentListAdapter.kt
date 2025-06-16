@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import pt.ola.online_classes_app.R
 
 class StudentListAdapter(
-    private val studentList: MutableList<ClassInfoPresences>,
-    private val onEnrollClick: (ClassInfoPresences) -> Unit,
-    private val onUnenrollClick: (ClassInfoPresences) -> Unit
+    private val studentList: MutableList<StudentInfo>,
+    private val onEnrollClick: (StudentInfo) -> Unit,
+    private val onUnenrollClick: (StudentInfo) -> Unit
 ) : RecyclerView.Adapter<StudentListAdapter.PresenceViewHolder>() {
 
     inner class PresenceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -30,8 +30,8 @@ class StudentListAdapter(
     override fun onBindViewHolder(holder: PresenceViewHolder, position: Int) {
         val student = studentList[position]
 
-        holder.nameTextView.text = student.studentName
-        holder.student_email.text = student.studentEmail
+        holder.nameTextView.text = "Name: ${student.studentName}"
+        holder.student_email.text = "Email: ${student.studentEmail}"
 
         if (student.isEnrolled) {
             holder.enrollButton.visibility = View.GONE

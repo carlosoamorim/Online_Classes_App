@@ -4,12 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import pt.ola.online_classes_app.R
-import pt.ola.online_classes_app.professor.ClassInfo
+import pt.ola.online_classes_app.admin.classes.ClassInfo
 
 
 class AdminAddClass : AppCompatActivity() {
@@ -64,12 +65,16 @@ class AdminAddClass : AppCompatActivity() {
         btnAddClass.setOnClickListener {
             openAddClassActivity()
         }
+        findViewById<ImageButton>(R.id.backButton).setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
     }
 
     private fun loadClasses() {
         // Dummy data — replace with real data source
-        classList.add(ClassInfo("Math 101", "9:00 AM - 10:00 AM", "Room A", 123))
-        classList.add(ClassInfo("History 201", "10:00 AM - 11:00 AM", "Room B", 122))
+        classList.add(ClassInfo("Math 101", "9:00", "10.00","Room A", 123))
+        classList.add(ClassInfo("History 201", "10:00", "11:30", "Room B", 122))
     }
 
     private fun openAddClassActivity() {
@@ -82,7 +87,8 @@ class AdminAddClass : AppCompatActivity() {
             putExtra("classId", classList.indexOf(classInfo))
             putExtra("className", classInfo.courseName)
             putExtra("classRoom", classInfo.classRoom)
-            putExtra("classTime", classInfo.classTime)
+            putExtra("classStartTime", classInfo.classStartTime)
+            putExtra("classEndTime", classInfo.classEndTime)
             putExtra("teacherId", classInfo.teacherId.toString())
         }
         editClassLauncher.launch(intent)
@@ -99,9 +105,10 @@ class AdminAddClass : AppCompatActivity() {
     private fun handleActivityResult(data: Intent, isEdit: Boolean) {
         val name = data.getStringExtra("className") ?: return
         val room = data.getStringExtra("classRoom") ?: return
-        val time = data.getStringExtra("classTime") ?: return
+        val startTime = data.getStringExtra("classStartTime") ?: return
+        val endTime = data.getStringExtra("classEndTime") ?: return
         val teacherId = data.getIntExtra("teacherId", 0)
-        val updatedClass = ClassInfo(name, time, room, teacherId)
+        val updatedClass = ClassInfo(name, startTime, endTime, room, teacherId)
 
         if (isEdit) {
             val position = data.getIntExtra("classId", -1)
@@ -114,4 +121,5 @@ class AdminAddClass : AppCompatActivity() {
             adminClassAdapter.notifyItemInserted(classList.size - 1)
         }
     }
+
 }

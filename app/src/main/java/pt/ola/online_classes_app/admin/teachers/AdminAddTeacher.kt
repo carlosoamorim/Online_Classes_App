@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -59,12 +60,16 @@ class AdminAddTeacher : AppCompatActivity() {
         btnAddTeacher.setOnClickListener {
             openAddTeacherActivity()
         }
+        findViewById<ImageButton>(R.id.backButton).setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
     }
 
     private fun loadTeachers() {
         // Dummy data — replace with API call or DB fetch
-        teacherList.add(TeacherInfo("America Rio", "2024368@uni.com"))
-        teacherList.add(TeacherInfo("Jose Mamede", "9093458@uni.com"))
+        teacherList.add(TeacherInfo(1,"Amerigo Rio", "2024368@uni.com", "TPass"))
+        teacherList.add(TeacherInfo(2,"Jose Mamede", "9093458@uni.com", "TPass2"))
     }
 
     private fun openAddTeacherActivity() {
@@ -77,6 +82,7 @@ class AdminAddTeacher : AppCompatActivity() {
             putExtra("teacherId", teacherList.indexOf(teacherInfo))
             putExtra("teacherName", teacherInfo.teacherName)
             putExtra("teacherEmail", teacherInfo.teacherEmail)
+            putExtra("teacherPassword", teacherInfo.teacherPassword)
         }
         editTeacherLauncher.launch(intent)
     }
@@ -90,9 +96,12 @@ class AdminAddTeacher : AppCompatActivity() {
     }
 
     private fun handleActivityResult(data: Intent, isEdit: Boolean) {
+        val id = data.getIntExtra("teacherId", -1)
         val name = data.getStringExtra("teacherName") ?: return
         val email = data.getStringExtra("teacherEmail") ?: return
-        val updatedTeacher = TeacherInfo(name, email)
+        val password = data.getStringExtra("teacherPassword") ?: return
+
+        val updatedTeacher = TeacherInfo(id, name, email, password)
 
         if (isEdit) {
             val position = data.getIntExtra("teacherId", -1)

@@ -8,13 +8,12 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import pt.ola.online_classes_app.R
-import pt.ola.online_classes_app.admin.students.ClassInfoPresences
 
 class AdminStudentAdapter(
     private val context: Context,
-    private val studentList: List<ClassInfoPresences>,
-    private val onEditClick: (ClassInfoPresences) -> Unit,
-    private val onRemoveClick: (ClassInfoPresences) -> Unit
+    private val studentList: List<StudentInfo>,
+    private val onEditClick: (StudentInfo) -> Unit,
+    private val onRemoveClick: (StudentInfo) -> Unit
 ) : RecyclerView.Adapter<AdminStudentAdapter.AdminStudentViewHolder>() {
 
 
@@ -33,8 +32,8 @@ class AdminStudentAdapter(
     override fun onBindViewHolder(holder: AdminStudentViewHolder, position: Int) {
         val classInfoPresences = studentList[position]
 
-        holder.studentName.text = classInfoPresences.studentName
-        holder.studentEmail.text = classInfoPresences.studentEmail
+        holder.studentName.text = "Name: ${classInfoPresences.studentName}"
+        holder.studentEmail.text = "Email: ${classInfoPresences.studentEmail}"
 
         holder.btnEdit.setOnClickListener {
             onEditClick(classInfoPresences)

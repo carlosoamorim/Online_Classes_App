@@ -8,7 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import pt.ola.online_classes_app.R
-import pt.ola.online_classes_app.professor.ClassInfo
+import pt.ola.online_classes_app.admin.classes.ClassInfo
 
 class AdminClassAdapter(
     private val context: Context,
@@ -37,8 +37,8 @@ class AdminClassAdapter(
         val classInfo = classList[position]
 
         holder.courseName.text = classInfo.courseName
-        holder.classTime.text = classInfo.classTime
-        holder.classRoom.text = classInfo.classRoom
+        holder.classTime.text = "Time: ${classInfo.fullTime}"
+        holder.classRoom.text = "Room: ${classInfo.classRoom}"
 
         holder.btnEdit.setOnClickListener {
             onEditClick(classInfo)

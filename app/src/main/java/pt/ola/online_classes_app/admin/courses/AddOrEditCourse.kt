@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import pt.ola.online_classes_app.R
@@ -49,5 +50,9 @@ class AddOrEditCourse : AppCompatActivity() {
             setResult(Activity.RESULT_OK, resultIntent)
             finish()
         }
+        findViewById<ImageButton>(R.id.backButton).setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
     }
 }

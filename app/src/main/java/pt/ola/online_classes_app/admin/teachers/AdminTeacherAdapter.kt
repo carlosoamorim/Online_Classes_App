@@ -32,8 +32,8 @@ class AdminTeacherAdapter(
     override fun onBindViewHolder(holder: TeacherViewHolder, position: Int) {
         val teacher = teacherList[position]
 
-        holder.teacherName.text = teacher.teacherName
-        holder.teacherEmail.text = teacher.teacherEmail
+        holder.teacherName.text = "Name: ${teacher.teacherName}"
+        holder.teacherEmail.text = "Email: ${teacher.teacherEmail}"
 
         holder.btnEdit.setOnClickListener { onEditClick(teacher) }
         holder.btnRemove.setOnClickListener { onRemoveClick(teacher) }

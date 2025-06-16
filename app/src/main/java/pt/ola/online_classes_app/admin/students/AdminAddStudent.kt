@@ -4,12 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import pt.ola.online_classes_app.R
-import pt.ola.online_classes_app.admin.students.ClassInfoPresences
 
 
 class AdminAddStudent : AppCompatActivity() {
@@ -18,7 +18,7 @@ class AdminAddStudent : AppCompatActivity() {
     private lateinit var studentRecyclerView: RecyclerView
     private lateinit var adminStudentAdapter: AdminStudentAdapter
 
-    private val studentList = mutableListOf<ClassInfoPresences>()
+    private val studentList = mutableListOf<StudentInfo>()
 
     // Launcher for adding a new class
     private val addStudentLauncher = registerForActivityResult(
@@ -64,12 +64,17 @@ class AdminAddStudent : AppCompatActivity() {
         btnAddStudent.setOnClickListener {
             openAddStudentActivity()
         }
+
+        findViewById<ImageButton>(R.id.backButton).setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
     }
 
     private fun loadStudents() {
         // Dummy data — replace with real data source
-        studentList.add(ClassInfoPresences("1", "Student 1", "funemail@university.pt", false))
-        studentList.add(ClassInfoPresences("2","Josh", "joshmail@gmail.com", false))
+        studentList.add(StudentInfo("1", "Student 1", "funemail@university.pt", "SPass",false))
+        studentList.add(StudentInfo("2","Josh", "joshmail@gmail.com", "SPass2",false))
     }
 
     private fun openAddStudentActivity() {
@@ -77,16 +82,17 @@ class AdminAddStudent : AppCompatActivity() {
         addStudentLauncher.launch(intent)
     }
 
-    private fun openEditStudentActivity(classInfoPresences: ClassInfoPresences) {
+    private fun openEditStudentActivity(classInfoPresences: StudentInfo) {
         val intent = Intent(this, AddOrEditStudent::class.java).apply {
             putExtra("studentId", studentList.indexOf(classInfoPresences))
             putExtra("studentName", classInfoPresences.studentName)
             putExtra("studentEmail", classInfoPresences.studentEmail)
+            putExtra("studentPassword", classInfoPresences.studentPassword)
         }
         editStudentLauncher.launch(intent)
     }
 
-    private fun removeStudent(classInfoPresences: ClassInfoPresences) {
+    private fun removeStudent(classInfoPresences: StudentInfo) {
         val position = studentList.indexOf(classInfoPresences)
         if (position != -1) {
             studentList.removeAt(position)
@@ -97,6 +103,7 @@ class AdminAddStudent : AppCompatActivity() {
     private fun handleActivityResult(data: Intent, isEdit: Boolean) {
         val name = data.getStringExtra("studentName") ?: return
         val email = data.getStringExtra("studentEmail") ?: return
+        val password = data.getStringExtra("studentPassword") ?: return
 
         val id = if (isEdit) {
             studentList[data.getIntExtra("studentId", -1)].id
@@ -104,7 +111,7 @@ class AdminAddStudent : AppCompatActivity() {
             System.currentTimeMillis().toString()
         }
 
-        val updatedStudent = ClassInfoPresences(id, name, email, false)
+        val updatedStudent = StudentInfo(id, name, email, password,false)
 
         if (isEdit) {
             val position = data.getIntExtra("studentId", -1)

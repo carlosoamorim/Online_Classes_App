@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -64,11 +65,16 @@ class AdminAddCourse : AppCompatActivity() {
         btnAddCourse.setOnClickListener {
             openAddCourseActivity()
         }
+
+        findViewById<ImageButton>(R.id.backButton).setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
     }
 
     private fun loadCourses() {
-        courseList.add(CourseInfo("Databases", "Prof. Ana"))
-        courseList.add(CourseInfo("Networking", "Prof. Luís"))
+        courseList.add(CourseInfo(1,"Databases", "Ana"))
+        courseList.add(CourseInfo(2,"Networking", "Luís"))
     }
 
     private fun openAddCourseActivity() {
@@ -102,9 +108,10 @@ class AdminAddCourse : AppCompatActivity() {
     }
 
     private fun handleActivityResult(data: Intent, isEdit: Boolean) {
+        val courseId = data.getIntExtra("courseId", -1)
         val name = data.getStringExtra("courseName") ?: return
         val teacher = data.getStringExtra("teacherName") ?: return
-        val newCourse = CourseInfo(name, teacher)
+        val newCourse = CourseInfo(courseId, name, teacher)
 
         if (isEdit) {
             val position = data.getIntExtra("courseId", -1)
