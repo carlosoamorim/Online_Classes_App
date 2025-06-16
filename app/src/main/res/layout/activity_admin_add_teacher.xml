@@ -10,6 +10,8 @@
         android:id="@+id/btnAddTeacher"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="20dp"
         android:text="Add New Teacher"
         android:backgroundTint="@color/background_dark_green"
         android:textColor="@android:color/white" />

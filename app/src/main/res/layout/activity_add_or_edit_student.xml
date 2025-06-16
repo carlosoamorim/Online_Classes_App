@@ -1,34 +1,89 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
     android:background="@color/background_pastel">
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent" android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-
-    <EditText
-            android:id="@+id/editStudentName"
-            android:layout_width="match_parent"
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Student Name" />
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="24dp"
+            android:text="Add Student"
+            android:textColor="@color/background_dark_green"
+            android:textSize="35sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Student Name"
+            android:textColor="#555555"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editStudentName"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edittext_box"
+            android:hint="Student Name"
+            android:padding="12dp" />
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Student Email"
+            android:textColor="#555555"
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/editStudentEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Student Email" />
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edittext_box"
+            android:hint="Student Email"
+            android:padding="12dp" />
 
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Student Password"
+            android:textColor="#555555"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editStudentPassword"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edittext_box"
+            android:hint="Student Password"
+            android:padding="12dp" />
 
 
         <Button
             android:id="@+id/btnSaveStudent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Save Student"
-            android:layout_marginTop="16dp"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="24dp"
             android:backgroundTint="@color/background_dark_green"
+            android:text="Sign up"
             android:textColor="@android:color/white" />
 
     </LinearLayout>
