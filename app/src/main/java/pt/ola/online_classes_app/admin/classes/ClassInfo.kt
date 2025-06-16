@@ -1,4 +1,4 @@
-package pt.ola.online_classes_app.professor
+package pt.ola.online_classes_app.admin.classes
 
 data class ClassInfo (
     val courseName: String,

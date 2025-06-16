@@ -1,0 +1,45 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/background_pastel">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent" android:layout_height="wrap_content">
+
+
+        <EditText
+            android:id="@+id/editClassName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Class Name" />
+
+        <EditText
+            android:id="@+id/editClassRoom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Room" />
+
+        <EditText
+            android:id="@+id/editClassTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time (HH:MM)" />
+
+        <EditText
+            android:id="@+id/editTeacherId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Teacher ID" />
+
+        <Button
+            android:id="@+id/btnSaveClass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Class"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/background_dark_green"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+</ScrollView>

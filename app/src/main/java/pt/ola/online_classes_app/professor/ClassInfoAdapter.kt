@@ -7,11 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import pt.ola.online_classes_app.R
 import pt.ola.online_classes_app.student.ClassInfo
-import pt.ola.online_classes_app.student.student_dashboard
 
 class ClassInfoAdapter(
     private val context: Context,
