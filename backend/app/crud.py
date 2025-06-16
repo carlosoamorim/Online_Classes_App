@@ -13,6 +13,9 @@ def create_user(db: Session, user: schemas.UserCreate):
 def get_users(db: Session):
     return db.query(models.User).all()
 
+def sign_in(email: str, password: str, db: Session):
+    return db.execute(select(models.User).where(models.User.email == email, models.User.password == password)).scalars().first()
+
 def remove_user(db: Session, email: str):
     db_user_email = email
     print(db_user_email)

@@ -39,6 +39,23 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     """
     return crud.create_user(db, user)
 
+@app.post("/users/signin", response_model=schemas.User)
+def sign_in(email: str, password: str, db: Session = Depends(get_db)):
+    """
+    Handles user sign-in functionality. The function verifies the provided
+    credentials and retrieves the user information if the sign-in is successful.
+
+    :param email: The email address of the user attempting to sign in
+    :type email: str
+    :param password: The password of the user attempting to sign in
+    :type password: str
+    :param db: Database session dependency for accessing user records
+    :type db: Session
+    :return: The user object if the credentials are valid
+    :rtype: schemas.User
+    """
+    return crud.sign_in(db = db, email = email, password = password)
+
 # Get list of all users handle
 @app.get("/users/", response_model=list[schemas.User])
 def read_users(db: Session = Depends(get_db)):
