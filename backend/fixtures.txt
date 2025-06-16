@@ -1,0 +1,52 @@
+# USERS
+
+  {
+    "name": "Mikhail Gazizov",
+    "email": "mikhail@uni.com",
+    "password": "1234",
+    "role": "student"
+  }
+
+  {
+    "name": "Liepa Lithuanian",
+    "email": "liepa@uni.com",
+    "password": "1234",
+    "role": "student"
+  }
+
+  {
+    "name": "Americo Rio",
+    "email": "americo@uni.com",
+    "password": "1234",
+    "role": "teacher"
+  }
+
+  {
+    "name": "Dean of Uni",
+    "email": "dean@uni.com",
+    "password": "1234",
+    "role": "admin"
+  }
+
+# SUBJECTS
+
+  {
+  "name": "Mobile Application Development",
+  "teacher_id": 3
+  }
+
+# CLASSES
+
+  {
+  "subject_id": 1,
+  "auditorium": "A120",
+  "start_time": "2025-06-16T13:30:00.000Z",
+  "end_time": "2025-06-16T14:45:00.000Z"
+  }
+
+# ENROLLMENTS
+
+   {
+  "subject_id": 1,
+  "student_id": 2
+   }
