@@ -50,11 +50,6 @@
         <activity android:name=".admin.courses.AdminAddCourse" />
         <activity android:name=".admin.courses.CourseStudentListActivity" />
 
-
-        <activity
-            android:name=".auth.login"
-            android:exported="false" />
-
         <activity
             android:name=".admin.admin_dashboard"
             android:exported="false" />
