@@ -1,11 +1,13 @@
 package pt.ola.online_classes_app.admin.teachers
 
 
+import TeacherApiService
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +19,8 @@ class AdminAddTeacher : AppCompatActivity() {
     private lateinit var btnAddTeacher: Button
     private lateinit var teacherRecyclerView: RecyclerView
     private lateinit var teacherAdapter: AdminTeacherAdapter
+    private lateinit var apiService: TeacherApiService
+
 
     private val teacherList = mutableListOf<TeacherInfo>()
 
@@ -25,18 +29,18 @@ class AdminAddTeacher : AppCompatActivity() {
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
-            result.data?.let { handleActivityResult(it, isEdit = false) }
+            result.data?.let { handleActivityResult(it) }
         }
     }
 
     // Launcher for editing a teacher
-    private val editTeacherLauncher = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            result.data?.let { handleActivityResult(it, isEdit = true) }
-        }
-    }
+//    private val editTeacherLauncher = registerForActivityResult(
+//        ActivityResultContracts.StartActivityForResult()
+//    ) { result ->
+//        if (result.resultCode == Activity.RESULT_OK) {
+//            result.data?.let { handleActivityResult(it, isEdit = true) }
+//        }
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,14 +49,17 @@ class AdminAddTeacher : AppCompatActivity() {
         btnAddTeacher = findViewById(R.id.btnAddTeacher)
         teacherRecyclerView = findViewById(R.id.teacherRecyclerView)
 
+        apiService = TeacherApiService(this)
         loadTeachers()
+
 
         teacherAdapter = AdminTeacherAdapter(
             context = this,
             teacherList = teacherList,
-            onEditClick = { openEditTeacherActivity(it) },
+            //onEditClick = { openEditTeacherActivity(it) },
             onRemoveClick = { removeTeacher(it) }
         )
+
 
         teacherRecyclerView.layoutManager = LinearLayoutManager(this)
         teacherRecyclerView.adapter = teacherAdapter
@@ -67,9 +74,18 @@ class AdminAddTeacher : AppCompatActivity() {
     }
 
     private fun loadTeachers() {
-        // Dummy data — replace with API call or DB fetch
-        teacherList.add(TeacherInfo(1,"Amerigo Rio", "2024368@uni.com", "TPass"))
-        teacherList.add(TeacherInfo(2,"Jose Mamede", "9093458@uni.com", "TPass2"))
+        apiService.getTeachers(
+            onSuccess = {
+                teacherList.clear()
+                teacherList.addAll(it)
+                teacherAdapter.notifyDataSetChanged()
+            },
+            onError = {
+                Toast.makeText(this, "Failed to load teachers", Toast.LENGTH_SHORT).show()
+                it.printStackTrace()
+            }
+        )
+
     }
 
     private fun openAddTeacherActivity() {
@@ -77,42 +93,51 @@ class AdminAddTeacher : AppCompatActivity() {
         addTeacherLauncher.launch(intent)
     }
 
-    private fun openEditTeacherActivity(teacherInfo: TeacherInfo) {
-        val intent = Intent(this, AddOrEditTeacher::class.java).apply {
-            putExtra("teacherId", teacherList.indexOf(teacherInfo))
-            putExtra("teacherName", teacherInfo.teacherName)
-            putExtra("teacherEmail", teacherInfo.teacherEmail)
-            putExtra("teacherPassword", teacherInfo.teacherPassword)
-        }
-        editTeacherLauncher.launch(intent)
-    }
+//    private fun openEditTeacherActivity(teacherInfo: TeacherInfo) {
+//        val intent = Intent(this, AddOrEditTeacher::class.java).apply {
+//            putExtra("teacherId", teacherList.indexOf(teacherInfo))
+//            putExtra("teacherName", teacherInfo.teacherName)
+//            putExtra("teacherEmail", teacherInfo.teacherEmail)
+//            putExtra("teacherPassword", teacherInfo.teacherPassword)
+//        }
+//        editTeacherLauncher.launch(intent)
+//    }
 
     private fun removeTeacher(teacherInfo: TeacherInfo) {
-        val position = teacherList.indexOf(teacherInfo)
-        if (position != -1) {
-            teacherList.removeAt(position)
-            teacherAdapter.notifyItemRemoved(position)
-        }
+        apiService.deleteTeacher(teacherInfo.email,
+            onComplete = {
+                val position = teacherList.indexOf(teacherInfo)
+                if (position != -1) {
+                    teacherList.removeAt(position)
+                    teacherAdapter.notifyItemRemoved(position)
+                }
+            },
+            onError = {
+                Toast.makeText(this, "Failed to delete teacher", Toast.LENGTH_SHORT).show()
+                it.printStackTrace()
+            }
+        )
     }
 
-    private fun handleActivityResult(data: Intent, isEdit: Boolean) {
-        val id = data.getIntExtra("teacherId", -1)
+    private fun handleActivityResult(data: Intent, isEdit: Boolean = false) {
+        //val id = data.getIntExtra("teacherId", -1)
         val name = data.getStringExtra("teacherName") ?: return
         val email = data.getStringExtra("teacherEmail") ?: return
         val password = data.getStringExtra("teacherPassword") ?: return
 
-        val updatedTeacher = TeacherInfo(id, name, email, password)
+        val newTeacher = TeacherInfo(name, email, password, role = "teacher")
 
-        if (isEdit) {
-            val position = data.getIntExtra("teacherId", -1)
-            if (position in teacherList.indices) {
-                teacherList[position] = updatedTeacher
-                teacherAdapter.notifyItemChanged(position)
+        apiService.addTeacher(newTeacher,
+            onComplete = {
+                teacherList.add(newTeacher)
+                teacherAdapter.notifyItemInserted(teacherList.size - 1)
+            },
+            onError = {
+                Toast.makeText(this, "Failed to add teacher", Toast.LENGTH_SHORT).show()
+                it.printStackTrace()
             }
-        } else {
-            teacherList.add(updatedTeacher)
-            teacherAdapter.notifyItemInserted(teacherList.size - 1)
-        }
+        )
     }
+
 }
 

@@ -12,7 +12,7 @@ import pt.ola.online_classes_app.R
 class AdminStudentAdapter(
     private val context: Context,
     private val studentList: List<StudentInfo>,
-    private val onEditClick: (StudentInfo) -> Unit,
+    //private val onEditClick: (StudentInfo) -> Unit,
     private val onRemoveClick: (StudentInfo) -> Unit
 ) : RecyclerView.Adapter<AdminStudentAdapter.AdminStudentViewHolder>() {
 
@@ -32,12 +32,12 @@ class AdminStudentAdapter(
     override fun onBindViewHolder(holder: AdminStudentViewHolder, position: Int) {
         val classInfoPresences = studentList[position]
 
-        holder.studentName.text = "Name: ${classInfoPresences.studentName}"
-        holder.studentEmail.text = "Email: ${classInfoPresences.studentEmail}"
+        holder.studentName.text = "Name: ${classInfoPresences.name}"
+        holder.studentEmail.text = "Email: ${classInfoPresences.email}"
 
-        holder.btnEdit.setOnClickListener {
-            onEditClick(classInfoPresences)
-        }
+//        holder.btnEdit.setOnClickListener {
+//            //onEditClick(classInfoPresences)
+//        }
 
         holder.btnRemove.setOnClickListener {
             onRemoveClick(classInfoPresences)

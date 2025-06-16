@@ -20,24 +20,24 @@ class CourseStudentListActivity : AppCompatActivity() {
 
         // Replace with real data or intent data if available
         val studentList = arrayListOf(
-            StudentInfo("1", "Alice Smith", "alice@example.com", "SPass3",false),
-            StudentInfo("2", "Bob Johnson", "bob@example.com", "Spass4",true)
+            StudentInfo( "Alice Smith", "alice@example.com", "SPass3","student"),
+            StudentInfo("Bob Johnson", "bob@example.com", "Spass4","student"),
         )
 
         recyclerView = findViewById(R.id.studentRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        adapter = StudentListAdapter(
-            studentList,
-            onEnrollClick = { student ->
-                student.isEnrolled = true
-                // TODO: update database
-            },
-            onUnenrollClick = { student ->
-                student.isEnrolled = false
-                // TODO: update database
-            }
-        )
+//        adapter = StudentListAdapter(
+//            studentList,
+//            onEnrollClick = { student ->
+//                student.isEnrolled = true
+//                // TODO: update database
+//            },
+//            onUnenrollClick = { student ->
+//                student.isEnrolled = false
+//                // TODO: update database
+//            }
+//        )
 
         recyclerView.adapter = adapter
 

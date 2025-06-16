@@ -14,7 +14,7 @@ class AdminCourseAdapter(
     private val context: Context,
     private val courseList: List<CourseInfo>,
     private val onViewStudentsClick: (CourseInfo) -> Unit,
-    private val onEditClick: (CourseInfo) -> Unit,
+    //private val onEditClick: (CourseInfo) -> Unit,
     private val onRemoveClick: (CourseInfo) -> Unit
 ) : RecyclerView.Adapter<AdminCourseAdapter.CourseViewHolder>() {
 
@@ -22,7 +22,7 @@ class AdminCourseAdapter(
         val courseName: TextView = itemView.findViewById(R.id.course_name)
         val teacherName: TextView = itemView.findViewById(R.id.teacher_name)
         val btnViewStudents: Button = itemView.findViewById(R.id.btn_view_students)
-        val btnEdit: Button = itemView.findViewById(R.id.btn_edit_course)
+        //val btnEdit: Button = itemView.findViewById(R.id.btn_edit_course)
         val btnRemove: Button = itemView.findViewById(R.id.btn_remove_course)
     }
 
@@ -40,7 +40,7 @@ class AdminCourseAdapter(
             onViewStudentsClick(course)
         }
 
-        holder.btnEdit.setOnClickListener { onEditClick(course) }
+        //holder.btnEdit.setOnClickListener { onEditClick(course) }
         holder.btnRemove.setOnClickListener { onRemoveClick(course) }
     }
 

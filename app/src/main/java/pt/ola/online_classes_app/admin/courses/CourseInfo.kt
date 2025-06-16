@@ -2,7 +2,7 @@ package pt.ola.online_classes_app.admin.courses
 
 data class CourseInfo(
     val courseId: Int,
-    val courseName: String,
-    val teacherName: String,
-    val studentList: MutableList<String> = mutableListOf()
+    var courseName: String,
+    var teacherName: String,
+    var studentList: MutableList<String> = mutableListOf()
 )

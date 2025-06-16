@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -54,7 +55,7 @@ class AdminAddStudent : AppCompatActivity() {
         adminStudentAdapter = AdminStudentAdapter(
             context = this,
             studentList = studentList,
-            onEditClick = { classInfoPresences -> openEditStudentActivity(classInfoPresences) },
+            //onEditClick = { classInfoPresences -> openEditStudentActivity(classInfoPresences) },
             onRemoveClick = { classInfoPresences -> removeStudent(classInfoPresences) }
         )
 
@@ -72,10 +73,17 @@ class AdminAddStudent : AppCompatActivity() {
     }
 
     private fun loadStudents() {
-        // Dummy data — replace with real data source
-        studentList.add(StudentInfo("1", "Student 1", "funemail@university.pt", "SPass",false))
-        studentList.add(StudentInfo("2","Josh", "joshmail@gmail.com", "SPass2",false))
-    }
+        val apiService = StudentApiService(this)
+        apiService.getStudents(
+            onSuccess = {
+                studentList.clear()
+                studentList.addAll(it)
+                adminStudentAdapter.notifyDataSetChanged()
+            },
+            onError = {
+                Toast.makeText(this, "Failed to load students", Toast.LENGTH_SHORT).show()
+            }
+        )    }
 
     private fun openAddStudentActivity() {
         val intent = Intent(this, AddOrEditStudent::class.java)
@@ -85,19 +93,25 @@ class AdminAddStudent : AppCompatActivity() {
     private fun openEditStudentActivity(classInfoPresences: StudentInfo) {
         val intent = Intent(this, AddOrEditStudent::class.java).apply {
             putExtra("studentId", studentList.indexOf(classInfoPresences))
-            putExtra("studentName", classInfoPresences.studentName)
-            putExtra("studentEmail", classInfoPresences.studentEmail)
-            putExtra("studentPassword", classInfoPresences.studentPassword)
+            putExtra("studentName", classInfoPresences.name)
+            putExtra("studentEmail", classInfoPresences.email)
+            putExtra("studentPassword", classInfoPresences.password)
         }
         editStudentLauncher.launch(intent)
     }
 
     private fun removeStudent(classInfoPresences: StudentInfo) {
-        val position = studentList.indexOf(classInfoPresences)
-        if (position != -1) {
-            studentList.removeAt(position)
-            adminStudentAdapter.notifyItemRemoved(position)
-        }
+        val apiService = StudentApiService(this)
+        apiService.deleteStudent(
+            email = classInfoPresences.email,
+            onComplete = {
+                Toast.makeText(this, "Student removed", Toast.LENGTH_SHORT).show()
+                loadStudents()
+            },
+            onError = {
+                Toast.makeText(this, "Failed to remove student", Toast.LENGTH_SHORT).show()
+            }
+        )
     }
 
     private fun handleActivityResult(data: Intent, isEdit: Boolean) {
@@ -105,23 +119,18 @@ class AdminAddStudent : AppCompatActivity() {
         val email = data.getStringExtra("studentEmail") ?: return
         val password = data.getStringExtra("studentPassword") ?: return
 
-        val id = if (isEdit) {
-            studentList[data.getIntExtra("studentId", -1)].id
-        } else {
-            System.currentTimeMillis().toString()
-        }
+        val apiService = StudentApiService(this)
+        val newStudent = StudentInfo(name = name, email = email, password = password, role = "student")
 
-        val updatedStudent = StudentInfo(id, name, email, password,false)
-
-        if (isEdit) {
-            val position = data.getIntExtra("studentId", -1)
-            if (position != -1 && position < studentList.size) {
-                studentList[position] = updatedStudent
-                adminStudentAdapter.notifyItemChanged(position)
+        apiService.addStudent(
+            student = newStudent,
+            onComplete = {
+                Toast.makeText(this, "Student added", Toast.LENGTH_SHORT).show()
+                loadStudents()
+            },
+            onError = {
+                Toast.makeText(this, "Failed to add student", Toast.LENGTH_SHORT).show()
             }
-        } else {
-            studentList.add(updatedStudent)
-            adminStudentAdapter.notifyItemInserted(studentList.size - 1)
-        }
+        )
     }
 }

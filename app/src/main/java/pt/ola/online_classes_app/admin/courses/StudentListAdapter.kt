@@ -30,16 +30,16 @@ class StudentListAdapter(
     override fun onBindViewHolder(holder: PresenceViewHolder, position: Int) {
         val student = studentList[position]
 
-        holder.nameTextView.text = "Name: ${student.studentName}"
-        holder.student_email.text = "Email: ${student.studentEmail}"
+        holder.nameTextView.text = "Name: ${student.name}"
+        holder.student_email.text = "Email: ${student.email}"
 
-        if (student.isEnrolled) {
-            holder.enrollButton.visibility = View.GONE
-            holder.unenrollButton.visibility = View.VISIBLE
-        } else {
-            holder.enrollButton.visibility = View.VISIBLE
-            holder.unenrollButton.visibility = View.GONE
-        }
+//        if (student.isEnrolled) {
+//            holder.enrollButton.visibility = View.GONE
+//            holder.unenrollButton.visibility = View.VISIBLE
+//        } else {
+//            holder.enrollButton.visibility = View.VISIBLE
+//            holder.unenrollButton.visibility = View.GONE
+//        }
 
         holder.enrollButton.setOnClickListener {
             onEnrollClick(student)
