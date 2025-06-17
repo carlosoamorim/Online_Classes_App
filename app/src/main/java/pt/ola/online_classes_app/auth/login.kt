@@ -43,9 +43,8 @@ class login : AppCompatActivity() {
             Toast.makeText(this, "Please, fill all the information", Toast.LENGTH_SHORT).show()
             return
         }
-    // Endpoint do mike
         val requestQueue = Volley.newRequestQueue(this)
-        val url = "$BASE_URL/users"
+        val url = "$BASE_URL/users/signin?email=$email&password=$password"
 
         val jsonBody = JSONObject()
         jsonBody.put("email", email)
