@@ -265,7 +265,7 @@ class AdminAddClass : AppCompatActivity() {
     private fun deleteClass(classItem: ClassInfo) {
         Log.d("AdminAddClass", "Deleting class id=${classItem.id}")
 
-        val url = "http://10.0.2.2:8000/classes/${classItem.id}"
+        val url = "http://10.0.2.2:8000/classes/?id=${classItem.id}"
         val queue = Volley.newRequestQueue(this)
 
         val request = object : StringRequest(Request.Method.DELETE, url,
