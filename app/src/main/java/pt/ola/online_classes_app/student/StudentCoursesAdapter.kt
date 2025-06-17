@@ -1,6 +1,7 @@
 package pt.ola.online_classes_app.student
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,17 +9,24 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
+import org.json.JSONObject
 import pt.ola.online_classes_app.R
+import pt.ola.online_classes_app.model.Subject
+import pt.ola.online_classes_app.professor.ClassInfoPresences
 
 class StudentCoursesAdapter(
     private val context: Context,
-    private val courseNames: List<String>
+    private val subjectList: List<Subject>
 ) : RecyclerView.Adapter<StudentCoursesAdapter.CourseViewHolder>() {
 
     class CourseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val courseNameTextView: TextView = itemView.findViewById(R.id.courseNameTextView)
         val enrollButton: Button = itemView.findViewById(R.id.enrollButton)
-        val unsubscribeButton: Button = itemView.findViewById(R.id.unsubscribeButton)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CourseViewHolder {
@@ -27,21 +35,42 @@ class StudentCoursesAdapter(
     }
 
     override fun onBindViewHolder(holder: CourseViewHolder, position: Int) {
-        val courseName = courseNames[position]
+        val courseName = subjectList[position].name
         holder.courseNameTextView.text = courseName
 
         holder.enrollButton.setOnClickListener {
-            holder.enrollButton.visibility = View.GONE
-            holder.unsubscribeButton.visibility = View.VISIBLE
-            Toast.makeText(context, "Enrolled in $courseName", Toast.LENGTH_SHORT).show()
+            val enrollmentjson = JSONObject().apply {
+                put("student_id", context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE).getInt("user_id", -1));
+                put("subject_id", subjectList[position].id)
+            }
+            val requestQueue = Volley.newRequestQueue(context)
+            val request = JsonObjectRequest(
+                Request.Method.POST,
+                "http://10.0.2.2:8000/enrollments/",
+                enrollmentjson,
+                Response.Listener { response ->
+                    var classList = ArrayList<ClassInfoPresences>()
+                    val item = response
+                    val id = item.getInt("id");
+                    val subject_id = item.getInt("subject_id")
+                    val student_id = item.getInt("student_id")
+                    val subject_name= item.getJSONObject("subject").getString("name")
+
+                    Toast.makeText(context, "You have been enrolled in: ${subject_name}",
+                        Toast.LENGTH_SHORT).show()
+
+                },
+                Response.ErrorListener { error ->
+                    Toast.makeText(context, "Error: ${error.message}",
+                        Toast.LENGTH_SHORT).show()
+                }
+            )
+
+            requestQueue.add(request)
         }
 
-        holder.unsubscribeButton.setOnClickListener {
-            holder.unsubscribeButton.visibility = View.GONE
-            holder.enrollButton.visibility = View.VISIBLE
-            Toast.makeText(context, "Unsubscribed from $courseName", Toast.LENGTH_SHORT).show()
-        }
+
     }
 
-    override fun getItemCount(): Int = courseNames.size
+    override fun getItemCount(): Int = subjectList.size
 }
