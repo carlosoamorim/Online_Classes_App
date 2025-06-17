@@ -11,9 +11,10 @@ class ClassInfoAdapter(private val classList: List<ClassInfo>) :
     RecyclerView.Adapter<ClassInfoAdapter.ClassInfoViewHolder>() {
 
     class ClassInfoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val courseName: TextView = itemView.findViewById(R.id.course_name)
-        val classTime: TextView = itemView.findViewById(R.id.class_time)
-        val classRoom: TextView = itemView.findViewById(R.id.class_room)
+        val subject_name: TextView = itemView.findViewById(R.id.course_name)
+        val start_time: TextView = itemView.findViewById(R.id.class_time)
+        val end_time: TextView = itemView.findViewById(R.id.class_time)
+        val auditorium: TextView = itemView.findViewById(R.id.class_room)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClassInfoViewHolder {
@@ -24,9 +25,10 @@ class ClassInfoAdapter(private val classList: List<ClassInfo>) :
 
     override fun onBindViewHolder(holder: ClassInfoViewHolder, position: Int) {
         val classInfo = classList[position]
-        holder.courseName.text = classInfo.courseName
-        holder.classTime.text = classInfo.classTime
-        holder.classRoom.text = classInfo.classRoom
+        holder.subject_name.text = classInfo.subject_name
+        holder.start_time.text = classInfo.start_time
+        holder.end_time.text = classInfo.end_time
+        holder.auditorium.text = classInfo.auditorium
     }
 
     override fun getItemCount(): Int = classList.size
