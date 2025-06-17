@@ -16,7 +16,7 @@ class StudentListAdapter(
 
     inner class PresenceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.studentNameTextView)
-        val student_email: TextView = itemView.findViewById(R.id.student_email)
+        val emailTextView: TextView = itemView.findViewById(R.id.student_email)
         val enrollButton: Button = itemView.findViewById(R.id.enrollButton)
         val unenrollButton: Button = itemView.findViewById(R.id.unenrollButton)
     }
@@ -31,19 +31,19 @@ class StudentListAdapter(
         val student = studentList[position]
 
         holder.nameTextView.text = "Name: ${student.name}"
-        holder.student_email.text = "Email: ${student.email}"
+        holder.emailTextView.text = "Email: ${student.email}"
 
-//        if (student.isEnrolled) {
-//            holder.enrollButton.visibility = View.GONE
-//            holder.unenrollButton.visibility = View.VISIBLE
-//        } else {
-//            holder.enrollButton.visibility = View.VISIBLE
-//            holder.unenrollButton.visibility = View.GONE
-//        }
+        if (student.isEnrolled) {
+            holder.enrollButton.visibility = View.GONE
+            holder.unenrollButton.visibility = View.VISIBLE
+        } else {
+            holder.enrollButton.visibility = View.VISIBLE
+            holder.unenrollButton.visibility = View.GONE
+        }
 
         holder.enrollButton.setOnClickListener {
             onEnrollClick(student)
-            notifyItemChanged(position)
+            //notifyItemChanged(position)
         }
 
         holder.unenrollButton.setOnClickListener {

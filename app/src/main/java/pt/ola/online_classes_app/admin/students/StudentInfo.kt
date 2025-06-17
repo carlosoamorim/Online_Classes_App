@@ -5,5 +5,7 @@ data class StudentInfo(
     val name: String,
     val email: String,
     val password: String,
-    val role: String = "student"
+    val role: String = "student",
+    var isEnrolled: Boolean = false,
+    val id:Int = 0
 )
