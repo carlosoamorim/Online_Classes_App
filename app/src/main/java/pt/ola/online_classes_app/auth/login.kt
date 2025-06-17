@@ -13,6 +13,7 @@ import org.json.JSONObject
 import pt.ola.online_classes_app.R
 import pt.ola.online_classes_app.professor.professor_dashboard
 import pt.ola.online_classes_app.student.student_dashboard
+import pt.ola.online_classes_app.admin.admin_dashboard
 
 class login : AppCompatActivity() {
     private lateinit var editTextEmail: EditText
@@ -80,6 +81,11 @@ class login : AppCompatActivity() {
                     }
                     "teacher" -> {
                         val intent = Intent(this, professor_dashboard::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                    "admin" -> {
+                        val intent = Intent(this, admin_dashboard::class.java)
                         startActivity(intent)
                         finish()
                     }
