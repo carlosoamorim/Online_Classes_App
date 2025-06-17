@@ -30,18 +30,18 @@
             <TextView
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:text="Class Name"
+                android:text="Course Name"
                 android:textStyle="bold"
                 android:textColor="#555555"
                 android:textSize="16dp" />
 
             <EditText
-                android:id="@+id/editClassName"
+                android:id="@+id/editCourseName"
                 android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
                 android:layout_marginBottom="10dp"
-                android:hint="Class Name"
+                android:hint="Course Name"
                 android:background="@drawable/edittext_box"
                 android:padding="12dp" />
 
@@ -60,6 +60,24 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginBottom="10dp"
                 android:hint="Room"
+                android:background="@drawable/edittext_box"
+                android:padding="12dp" />
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:text="Date"
+                android:textStyle="bold"
+                android:textColor="#555555"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/editClassDate"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="10dp"
+                android:hint="Class Date (YYYY-MM-DD)"
                 android:background="@drawable/edittext_box"
                 android:padding="12dp" />
 

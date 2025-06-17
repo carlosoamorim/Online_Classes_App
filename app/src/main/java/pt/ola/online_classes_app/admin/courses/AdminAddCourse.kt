@@ -29,7 +29,7 @@ class AdminAddCourse : AppCompatActivity() {
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
-            result.data?.let { handleActivityResult(it, isEdit = false) }
+            result.data?.let { handleActivityResult(it) }
         }
     }
 
@@ -99,6 +99,7 @@ class AdminAddCourse : AppCompatActivity() {
     private fun openStudentListActivity(course: CourseInfo) {
         val intent = Intent(this, CourseStudentListActivity::class.java).apply {
             putStringArrayListExtra("studentList", ArrayList(course.studentList))
+            putExtra("subjectId", course.courseId)
         }
         startActivity(intent)
     }
@@ -125,7 +126,7 @@ class AdminAddCourse : AppCompatActivity() {
         queue.add(request)
     }
 
-    private fun handleActivityResult(data: Intent, isEdit: Boolean) {
+    private fun handleActivityResult(data: Intent) {
         val courseId = data.getIntExtra("courseId", -1)
         val name = data.getStringExtra("courseName") ?: return
         val teacher = data.getStringExtra("teacherName") ?: return
