@@ -112,6 +112,10 @@ def create_schedule(classes: schemas.ClassesCreate, db: Session = Depends(get_db
 def get_students_by_course(course_id: int, db: Session = Depends(get_db)):
     return crud.get_students_by_subject(course_id, db)
 
+@app.get("/classes/by_student/{student_id}", response_model=list[schemas.Classes])
+def get_classes_by_student_id(student_id: int, db: Session = Depends(get_db)):
+    return crud.get_classes_by_student(student_id = student_id, db = db)
+
 # Get list of all classes handle
 @app.get("/classes/", response_model=list[schemas.Classes])
 def read_schedules(db: Session = Depends(get_db)):
