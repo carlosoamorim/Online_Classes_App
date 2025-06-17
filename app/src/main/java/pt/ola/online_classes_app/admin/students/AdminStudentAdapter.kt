@@ -20,7 +20,7 @@ class AdminStudentAdapter(
     class AdminStudentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val studentName: TextView = itemView.findViewById(R.id.student_name)
         val studentEmail: TextView = itemView.findViewById(R.id.student_email)
-        val btnEdit: Button = itemView.findViewById(R.id.btn_edit)
+        //val btnEdit: Button = itemView.findViewById(R.id.btn_edit)
         val btnRemove: Button = itemView.findViewById(R.id.btn_remove)
     }
 

@@ -1,6 +1,5 @@
 package pt.ola.online_classes_app.admin.courses
 
-
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -16,6 +15,7 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import pt.ola.online_classes_app.R
+import java.net.URLEncoder
 
 class AdminAddCourse : AppCompatActivity() {
 
@@ -33,14 +33,6 @@ class AdminAddCourse : AppCompatActivity() {
         }
     }
 
-//    private val editCourseLauncher = registerForActivityResult(
-//        ActivityResultContracts.StartActivityForResult()
-//    ) { result ->
-//        if (result.resultCode == Activity.RESULT_OK) {
-//            result.data?.let { handleActivityResult(it, isEdit = true) }
-//        }
-//    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_add_course)
@@ -54,14 +46,9 @@ class AdminAddCourse : AppCompatActivity() {
             context = this,
             courseList = courseList,
             onViewStudentsClick = { openStudentListActivity(it) },
-            //onEditClick = { openEditCourseActivity(it) },
             onRemoveClick = { removeCourse(it) }
-//            onViewStudentsClick = { course ->
-//                val intent = Intent(this, CourseStudentListActivity::class.java).apply {
-//                    putStringArrayListExtra("studentList", ArrayList(course.studentList))
-//                }
-//                startActivity(intent)
-//            }
+
+            // onEditClick = { openEditCourseActivity(it) }
         )
 
         courseRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -74,7 +61,6 @@ class AdminAddCourse : AppCompatActivity() {
         findViewById<ImageButton>(R.id.backButton).setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
-
     }
 
     private fun loadCourses() {
@@ -98,14 +84,15 @@ class AdminAddCourse : AppCompatActivity() {
             },
             { error ->
                 error.printStackTrace()
+                Toast.makeText(this, "Failed to load courses", Toast.LENGTH_SHORT).show()
             })
 
         queue.add(request)
-
     }
 
     private fun openAddCourseActivity() {
         val intent = Intent(this, AddOrEditCourse::class.java)
+        // If needed: intent.putExtra("teacherId", yourTeacherId)
         addCourseLauncher.launch(intent)
     }
 
@@ -116,61 +103,35 @@ class AdminAddCourse : AppCompatActivity() {
         startActivity(intent)
     }
 
+    private fun removeCourse(course: CourseInfo) {
+        val encodedName = URLEncoder.encode(course.courseName, "UTF-8")
+        val url = "http://10.0.2.2:8000/subjects/?name=$encodedName"
+        val queue = Volley.newRequestQueue(this)
 
-//    private fun openEditCourseActivity(course: CourseInfo) {
-//        val intent = Intent(this, AddOrEditCourse::class.java).apply {
-//            putExtra("courseId", course.courseId)
-//
-//            putExtra("courseName", course.courseName)
-//            putExtra("teacherName", course.teacherName)
-//        }
-//        editCourseLauncher.launch(intent)
-//    }
+        val request = StringRequest(Request.Method.DELETE, url,
+            {
+                val index = courseList.indexOf(course)
+                if (index != -1) {
+                    courseList.removeAt(index)
+                    courseAdapter.notifyItemRemoved(index)
+                }
+                Toast.makeText(this, "Course deleted", Toast.LENGTH_SHORT).show()
+            },
+            {
+                it.printStackTrace()
+                Toast.makeText(this, "Failed to delete course", Toast.LENGTH_SHORT).show()
+            })
 
-
-        private fun removeCourse(course: CourseInfo) {
-            val position = courseList.indexOf(course)
-            if (position != -1) {
-                courseList.removeAt(position)
-                courseAdapter.notifyItemRemoved(position)
-            }
-            val url = "http://10.0.2.2:8000:8000/subjects/${course.courseId}"
-            val queue = Volley.newRequestQueue(this)
-
-            val request = StringRequest(Request.Method.DELETE, url,
-                {
-                    val position = courseList.indexOf(course)
-                    if (position != -1) {
-                        courseList.removeAt(position)
-                        courseAdapter.notifyItemRemoved(position)
-                    }
-                    Toast.makeText(this, "Course deleted", Toast.LENGTH_SHORT).show()
-                },
-                {
-                    it.printStackTrace()
-                    Toast.makeText(this, "Failed to delete course", Toast.LENGTH_SHORT).show()
-                })
-
-            queue.add(request)
-        }
-
-
+        queue.add(request)
+    }
 
     private fun handleActivityResult(data: Intent, isEdit: Boolean) {
         val courseId = data.getIntExtra("courseId", -1)
         val name = data.getStringExtra("courseName") ?: return
         val teacher = data.getStringExtra("teacherName") ?: return
-        val newCourse = CourseInfo(courseId, name, teacher)
+        val newCourse = CourseInfo( courseId, name, teacher)
 
-        if (isEdit) {
-            val index = courseList.indexOfFirst { it.courseId == courseId }
-            if (index != -1) {
-                courseList[index] = newCourse
-                courseAdapter.notifyItemChanged(index)
-            }
-        } else {
-            courseList.add(newCourse)
-            courseAdapter.notifyItemInserted(courseList.size - 1)
-        }
+        courseList.add(newCourse)
+        courseAdapter.notifyItemInserted(courseList.size - 1)
     }
 }

@@ -7,16 +7,18 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONArray
 import org.json.JSONObject
+import pt.ola.online_classes_app.admin.students.StudentInfo
 
 class StudentApiService(private val context: Context) {
     private val queue: RequestQueue = Volley.newRequestQueue(context)
-    private val baseUrl = "http://10.0.2.2:5000/api"
+    private val baseUrl = "http://10.0.2.2:8000/"
 
-    fun getStudents(onSuccess: (List<StudentInfo>) -> Unit, onError: () -> Unit) {
-        val url = baseUrl + "/users/"
+    fun getStudents(onSuccess: (List<StudentInfo>) -> Unit, onError: (Throwable) -> Unit) {
+        val url = baseUrl + "users/"
 
         val request = JsonArrayRequest(
             Request.Method.GET, url, null,
@@ -37,7 +39,7 @@ class StudentApiService(private val context: Context) {
             },
             { error ->
                 Log.e("API_ERROR", "Failed to fetch students", error)
-                onError()
+                onError(error)
             }
         )
 
@@ -45,7 +47,7 @@ class StudentApiService(private val context: Context) {
     }
 
     fun addStudent(student: StudentInfo, onComplete: () -> Unit, onError: (Throwable) -> Unit) {
-        val url = "$baseUrl/users/"
+        val url = baseUrl + "users/"
         val jsonBody = JSONObject()
         jsonBody.put("name", student.name)
         jsonBody.put("email", student.email)
@@ -71,23 +73,18 @@ class StudentApiService(private val context: Context) {
         queue.add(request)
     }
 
-    fun deleteStudent(email: String, onComplete: () -> Unit, onError: () -> Unit) {
-        val url = "$baseUrl/users/?email=$email"
+    fun deleteStudent(email: String, onComplete: () -> Unit, onError: (Throwable) -> Unit) {
+        val url = baseUrl + "users/?email=$email"
 
-        val request = object : JsonObjectRequest(
-            Method.DELETE, url, null,
-            Response.Listener {
+        val request = StringRequest(
+            Request.Method.DELETE, url,
+            {
                 onComplete()
             },
-            Response.ErrorListener {
-                Log.e("API_DELETE_ERROR", "Delete failed", it)
-                onError()
+            { error ->
+                onError(error)
             }
-        ) {
-            override fun getHeaders(): MutableMap<String, String> {
-                return mutableMapOf("Accept" to "application/json")
-            }
-        }
+        )
 
         queue.add(request)
     }

@@ -90,15 +90,15 @@ class AdminAddStudent : AppCompatActivity() {
         addStudentLauncher.launch(intent)
     }
 
-    private fun openEditStudentActivity(classInfoPresences: StudentInfo) {
-        val intent = Intent(this, AddOrEditStudent::class.java).apply {
-            putExtra("studentId", studentList.indexOf(classInfoPresences))
-            putExtra("studentName", classInfoPresences.name)
-            putExtra("studentEmail", classInfoPresences.email)
-            putExtra("studentPassword", classInfoPresences.password)
-        }
-        editStudentLauncher.launch(intent)
-    }
+//    private fun openEditStudentActivity(classInfoPresences: StudentInfo) {
+//        val intent = Intent(this, AddOrEditStudent::class.java).apply {
+//            putExtra("studentId", studentList.indexOf(classInfoPresences))
+//            putExtra("studentName", classInfoPresences.name)
+//            putExtra("studentEmail", classInfoPresences.email)
+//            putExtra("studentPassword", classInfoPresences.password)
+//        }
+//        editStudentLauncher.launch(intent)
+//    }
 
     private fun removeStudent(classInfoPresences: StudentInfo) {
         val apiService = StudentApiService(this)

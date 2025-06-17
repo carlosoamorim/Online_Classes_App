@@ -45,7 +45,7 @@ class TeacherApiService(private val context: Context) {
         queue.add(request)
     }
 
-    fun addTeacher(teacher: TeacherInfo, onComplete: () -> Unit, onError: (Throwable) -> Unit) {
+    fun addTeacher(teacher: TeacherInfo, onComplete: (TeacherInfo) -> Unit, onError: (Throwable) -> Unit){
         val url = baseUrl + "users/"
 
         val jsonBody = JSONObject()
@@ -59,7 +59,14 @@ class TeacherApiService(private val context: Context) {
         val request = JsonObjectRequest(
             Request.Method.POST, url, jsonBody,
             { response ->
-                onComplete()
+                val id = response.optInt("id", -1)
+                val name = response.optString("name")
+                val email = response.optString("email")
+                val password = response.optString("password")
+                val role = response.optString("role")
+
+                val newTeacher = TeacherInfo(id, name, email, password, role)
+                onComplete(newTeacher)
             },
             { error ->
                 error.networkResponse?.let { networkResponse ->

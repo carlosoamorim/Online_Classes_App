@@ -12,13 +12,14 @@ import pt.ola.online_classes_app.R
 
 class AdminCourseAdapter(
     private val context: Context,
-    private val courseList: List<CourseInfo>,
+    private val courseList: MutableList<CourseInfo>,
     private val onViewStudentsClick: (CourseInfo) -> Unit,
     //private val onEditClick: (CourseInfo) -> Unit,
     private val onRemoveClick: (CourseInfo) -> Unit
 ) : RecyclerView.Adapter<AdminCourseAdapter.CourseViewHolder>() {
 
     class CourseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+       // var courseId: TextView = itemView.findViewById(R.id.course_id)
         val courseName: TextView = itemView.findViewById(R.id.course_name)
         val teacherName: TextView = itemView.findViewById(R.id.teacher_name)
         val btnViewStudents: Button = itemView.findViewById(R.id.btn_view_students)

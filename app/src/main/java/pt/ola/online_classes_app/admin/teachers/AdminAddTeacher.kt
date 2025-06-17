@@ -29,9 +29,16 @@ class AdminAddTeacher : AppCompatActivity() {
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
-            result.data?.let { handleActivityResult(it) }
+            result.data?.let { intent ->
+                val name = intent.getStringExtra("teacherName") ?: return@let
+                val email = intent.getStringExtra("teacherEmail") ?: return@let
+                val password = intent.getStringExtra("teacherPassword") ?: return@let
+                val newTeacher = TeacherInfo(-1, name, email, password, role = "teacher")
+                handleActivityResult(newTeacher)
+            }
         }
     }
+
 
     // Launcher for editing a teacher
 //    private val editTeacherLauncher = registerForActivityResult(
@@ -119,14 +126,7 @@ class AdminAddTeacher : AppCompatActivity() {
         )
     }
 
-    private fun handleActivityResult(data: Intent, isEdit: Boolean = false) {
-        //val id = data.getIntExtra("teacherId", -1)
-        val name = data.getStringExtra("teacherName") ?: return
-        val email = data.getStringExtra("teacherEmail") ?: return
-        val password = data.getStringExtra("teacherPassword") ?: return
-
-        val newTeacher = TeacherInfo(name, email, password, role = "teacher")
-
+    private fun handleActivityResult(newTeacher: TeacherInfo) {
         apiService.addTeacher(newTeacher,
             onComplete = {
                 teacherList.add(newTeacher)
@@ -138,6 +138,7 @@ class AdminAddTeacher : AppCompatActivity() {
             }
         )
     }
+
 
 }
 
