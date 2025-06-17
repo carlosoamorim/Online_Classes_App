@@ -22,14 +22,6 @@
         android:textStyle="bold" />
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Next Class: 10:00 AM - 11:00 AM on A120"
-        android:textSize="16sp"
-        android:layout_marginTop="8dp"
-        android:layout_gravity="center" />
-
     <!-- This empty View is used to push the buttons to the bottom of the screen  -->
     <View
         android:layout_width="match_parent"
