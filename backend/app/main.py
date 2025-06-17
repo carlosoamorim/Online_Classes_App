@@ -120,7 +120,7 @@ def read_schedules(db: Session = Depends(get_db)):
     """
     return crud.get_classes(db)
 
-@app.delete("/subjects/", response_model=list[schemas.Subject])
+@app.delete("/classes/", response_model=list[schemas.Subject])
 def delete_class(id: int, db: Session = Depends(get_db)):
     """
     This function is responsible for deleting a subject record from the database
@@ -188,7 +188,7 @@ def delete_subject(name: str, db: Session = Depends(get_db)):
         deleted.
     :rtype: list[schemas.Subject]
     """
-    return crud.remove_subject(db, name)
+    return crud.remove_subject(db = db, name = name)
 
 # ENROLLMENT HANDLE ===========================================================
 
