@@ -93,6 +93,21 @@ def delete_user(email: str, db: Session = Depends(get_db)):
 # CLASS HANDLE ===========================================================
 
 # Post new Class handle
+@app.post("/classes/withname/", response_model=list[schemas.Classes])
+def create_schedule_with_only_name(subject_name: str, classes: schemas.ClassesCreate, db: Session = Depends(get_db)):
+    """
+    Create a new schedule along with attendance records for all students enrolled in
+    the class's subject.
+
+    :param classes: The data for creating a new class schedule.
+    :type classes: schemas.ClassesCreate
+    :param db: The database session used to perform database operations.
+    :type db: Session
+    :return: The newly created class schedule information.
+    :rtype: schemas.Classes
+    """
+    return crud.searchsubjects(subject_name = subject_name, classes = classes, db = db)
+
 @app.post("/classes/", response_model=list[schemas.Classes])
 def create_schedule(classes: schemas.ClassesCreate, db: Session = Depends(get_db)):
     """
@@ -106,7 +121,7 @@ def create_schedule(classes: schemas.ClassesCreate, db: Session = Depends(get_db
     :return: The newly created class schedule information.
     :rtype: schemas.Classes
     """
-    return crud.create_classes(db, classes)
+    return crud.create_classes(classes = classes, db = db)
 
 @app.get("/classes/{id}", response_model=list[schemas.Enrollment])
 def get_students_by_course(course_id: int, db: Session = Depends(get_db)):
