@@ -22,7 +22,7 @@ class AdminClassAdapter(
         val courseName: TextView = itemView.findViewById(R.id.course_name)
         val classTime: TextView = itemView.findViewById(R.id.class_time)
         val classRoom: TextView = itemView.findViewById(R.id.class_room)
-        val btnEdit: Button = itemView.findViewById(R.id.btn_edit)
+        //val btnEdit: Button = itemView.findViewById(R.id.btn_edit)
         val btnRemove: Button = itemView.findViewById(R.id.btn_remove)
     }
 
@@ -40,9 +40,7 @@ class AdminClassAdapter(
         holder.classTime.text = "Time: ${classInfo.fullTime}"
         holder.classRoom.text = "Room: ${classInfo.classRoom}"
 
-        holder.btnEdit.setOnClickListener {
-            onEditClick(classInfo)
-        }
+       //holder.btnEdit.setOnClickListener { onEditClick(classInfo) }
 
         holder.btnRemove.setOnClickListener {
             onRemoveClick(classInfo)
