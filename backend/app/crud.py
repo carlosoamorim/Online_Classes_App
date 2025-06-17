@@ -56,14 +56,25 @@ def remove_subject(db: Session, name: str):
 
 
 # CLASS FUNCTIONS =======================================================
-def create_classes(db: Session, classes: schemas.ClassesCreate):
+
+def searchsubjects(classes: schemas.ClassesCreate, db: Session, subject_name: str ):
+    db_subject_id = db.execute(select(models.Subject.id).where(models.Subject.name == subject_name)).scalar()
+    db.commit()
+    print(db_subject_id)
+    classes.subject_id = db_subject_id
+    return create_classes(classes = classes, db = db)
+
+def create_classes( classes: schemas.ClassesCreate, db: Session):
+
     db_classes = models.Classes(**classes.model_dump())
-    db.execute(insert(models.Classes).values(start_time=db_classes.start_time, end_time=db_classes.end_time,
-                                             subject_id=db_classes.subject_id, auditorium=db_classes.auditorium))
-    ret_info = get_class_by_subject_auditorium_start(classes.subject_id, classes.auditorium, classes.start_time, db)
+
+    db.add(db_classes)
+    db.commit()
+    db.refresh(db_classes)
+    ret_info = get_class_by_subject_auditorium_start(db_classes.subject_id, db_classes.auditorium,
+                                                     db_classes.start_time, db)
     students = get_students_by_subject(db_classes.subject_id, db)
     for student in students:
-        print(f"Creating attendance for student_id={student.student_id}, class_id={ret_info.id}")
         create_attendance(
             db,
             schemas.AttendanceCreate(
