@@ -32,14 +32,14 @@
         android:layout_marginTop="8dp"
         android:gravity="end">
 
-        <Button
-            android:id="@+id/btn_edit_teacher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Edit"
-            android:backgroundTint="@color/background_dark_green"
-            android:textColor="@android:color/white"
-            android:layout_marginEnd="8dp" />
+<!--        <Button-->
+<!--            android:id="@+id/btn_edit_teacher"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Edit"-->
+<!--            android:backgroundTint="@color/background_dark_green"-->
+<!--            android:textColor="@android:color/white"-->
+<!--            android:layout_marginEnd="8dp" />-->
 
         <Button
             android:id="@+id/btn_remove_teacher"

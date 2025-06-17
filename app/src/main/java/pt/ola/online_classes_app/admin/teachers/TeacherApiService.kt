@@ -27,14 +27,16 @@ class TeacherApiService(private val context: Context) {
                 val teacherList = mutableListOf<TeacherInfo>()
                 for (i in 0 until response.length()) {
                     val obj = response.getJSONObject(i)
-                    val teacher = TeacherInfo(
-                        //id = obj.optInt("id"),
-                        name = obj.optString("name"),
-                        email = obj.optString("email"),
-                        password = obj.optString("password"),
-                        role = obj.optString("role")
-                    )
-                    teacherList.add(teacher)
+                    if (obj.optString("role") == "teacher") {
+                        val teacher = TeacherInfo(
+                            name = obj.optString("name"),
+                            email = obj.optString("email"),
+                            password = obj.optString("password"),
+                            role = obj.optString("role")
+                        )
+                        teacherList.add(teacher)
+                    }
+
                 }
                 onSuccess(teacherList)
             },

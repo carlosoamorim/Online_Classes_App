@@ -26,14 +26,15 @@ class StudentApiService(private val context: Context) {
                 val studentList = mutableListOf<StudentInfo>()
                 for (i in 0 until response.length()) {
                     val obj = response.getJSONObject(i)
-                    val student = StudentInfo(
-                        //id = obj.getInt("id"),
-                        name = obj.getString("name"),
-                        email = obj.getString("email"),
-                        password = obj.optString("password"),
-                        role = obj.getString("role")
-                    )
-                    studentList.add(student)
+                    if (obj.getString("role") == "student") {
+                        val student = StudentInfo(
+                            name = obj.getString("name"),
+                            email = obj.getString("email"),
+                            password = obj.optString("password"),
+                            role = obj.getString("role")
+                        )
+                        studentList.add(student)
+                    }
                 }
                 onSuccess(studentList)
             },
