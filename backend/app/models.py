@@ -13,7 +13,7 @@ class User(Base):
     role = Column(String(50))  # "student", "teacher" or "admin"
 
     # For teachers: classes they teach
-    subject = relationship("Subject", back_populates="teacher", cascade="all, delete")
+    subject = relationship("Subject", back_populates="teacher")
 
     # For students: classes enrolled in (via Enrollment)
     enrollment = relationship("Enrollment", back_populates="student", cascade="all, delete")
