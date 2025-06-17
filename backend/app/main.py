@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from . import models, schemas, crud
 from .database import engine, SessionLocal, Base
 from .models import Enrollment
+from .population import populate
 
 Base.metadata.create_all(bind=engine)
 
@@ -14,7 +15,10 @@ def get_db():
         yield db
     finally:
         db.close()
-
+def start_population():
+    populate(db=SessionLocal())
+    return 1
+app.add_event_handler("startup", start_population)
 # USER HANDLE ===========================================================
 
 # Post new user handle

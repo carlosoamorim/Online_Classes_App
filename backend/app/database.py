@@ -31,3 +31,4 @@ else:
     raise RuntimeError("Failed to connect to the database after several retries.")
 
 Base = declarative_base()
+
