@@ -111,6 +111,7 @@ def create_schedule(classes: schemas.ClassesCreate, db: Session = Depends(get_db
 @app.get("/classes/{id}", response_model=list[schemas.Enrollment])
 def get_students_by_course(course_id: int, db: Session = Depends(get_db)):
     return crud.get_students_by_subject(course_id, db)
+
 # Get list of all classes handle
 @app.get("/classes/", response_model=list[schemas.Classes])
 def read_schedules(db: Session = Depends(get_db)):
@@ -124,7 +125,7 @@ def read_schedules(db: Session = Depends(get_db)):
     """
     return crud.get_classes(db)
 
-@app.delete("/classes/", response_model=list[schemas.Subject])
+@app.delete("/classes/", response_model=list[schemas.Classes])
 def delete_class(id: int, db: Session = Depends(get_db)):
     """
     This function is responsible for deleting a subject record from the database
