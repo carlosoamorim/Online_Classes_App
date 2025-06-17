@@ -67,6 +67,7 @@ class AdminClassAdapter(
     private val context: Context,
     private val classList: List<ClassInfo>,
     private val onRemoveClick: (ClassInfo) -> Unit
+
 ) : RecyclerView.Adapter<AdminClassAdapter.ClassViewHolder>() {
 
     inner class ClassViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -81,6 +82,7 @@ class AdminClassAdapter(
         val view = LayoutInflater.from(context).inflate(R.layout.admin_item_class_info, parent, false)
         return ClassViewHolder(view)
     }
+
 
     override fun onBindViewHolder(holder: ClassViewHolder, position: Int) {
         val classItem = classList[position]

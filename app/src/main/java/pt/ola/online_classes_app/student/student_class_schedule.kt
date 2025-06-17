@@ -77,5 +77,10 @@ class student_class_schedule : AppCompatActivity() {
             val intent = Intent(this, student_dashboard::class.java)
             startActivity(intent)
         }
+        val goToCoursesButton = findViewById<Button>(R.id.goToCoursesButton)
+        goToCoursesButton.setOnClickListener {
+            val intent = Intent(this, student_courses::class.java)
+            startActivity(intent)
+        }
     }
     }
