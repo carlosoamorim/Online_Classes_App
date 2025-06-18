@@ -21,7 +21,7 @@ data class ClassInfo(
                 val formatter = DateTimeFormatter.ofPattern("HH:mm")
                 "${formatter.format(start)} - ${formatter.format(end)}"
             } catch (e: Exception) {
-                "$classStartTime - $classEndTime" // fallback
+                "$classStartTime - $classEndTime"
             }
         }
 

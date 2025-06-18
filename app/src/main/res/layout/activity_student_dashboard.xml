@@ -20,6 +20,14 @@
         android:textStyle="bold"
         android:layout_gravity="center" />
 
+    <Button
+        android:id="@+id/logout_btn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/background_dark_green"
+        android:text="Log out" />
+
 
     <!-- This empty View is used to push the buttons to the bottom of the screen  -->
     <View
@@ -37,4 +45,7 @@
         android:background="@android:color/transparent"
         android:textSize="34sp"
         android:textStyle="bold"/>
+
+
+
 </LinearLayout>

@@ -29,7 +29,6 @@ class AddOrEditTeacher : AppCompatActivity() {
 
         if (intent.hasExtra("teacherName")) {
             isEditMode = true
-            //teacherId = intent.getIntExtra("teacherId", -1)
             editName.setText(intent.getStringExtra("teacherName"))
             editEmail.setText(intent.getStringExtra("teacherEmail"))
             editPassword.setText(intent.getStringExtra("teacherPassword"))
@@ -46,7 +45,6 @@ class AddOrEditTeacher : AppCompatActivity() {
             }
 
             val resultIntent = Intent().apply {
-               // putExtra("teacherId", teacherId)
                 putExtra("teacherName", name)
                 putExtra("teacherEmail", email)
                 putExtra("teacherPassword", password)

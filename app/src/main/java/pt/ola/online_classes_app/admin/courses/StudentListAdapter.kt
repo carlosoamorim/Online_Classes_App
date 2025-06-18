@@ -43,7 +43,6 @@ class StudentListAdapter(
 
         holder.enrollButton.setOnClickListener {
             onEnrollClick(student)
-            //notifyItemChanged(position)
         }
 
         holder.unenrollButton.setOnClickListener {

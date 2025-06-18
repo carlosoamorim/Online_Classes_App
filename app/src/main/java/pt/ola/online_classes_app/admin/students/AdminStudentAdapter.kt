@@ -12,7 +12,6 @@ import pt.ola.online_classes_app.R
 class AdminStudentAdapter(
     private val context: Context,
     private val studentList: List<StudentInfo>,
-    //private val onEditClick: (StudentInfo) -> Unit,
     private val onRemoveClick: (StudentInfo) -> Unit
 ) : RecyclerView.Adapter<AdminStudentAdapter.AdminStudentViewHolder>() {
 
@@ -20,7 +19,6 @@ class AdminStudentAdapter(
     class AdminStudentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val studentName: TextView = itemView.findViewById(R.id.student_name)
         val studentEmail: TextView = itemView.findViewById(R.id.student_email)
-        //val btnEdit: Button = itemView.findViewById(R.id.btn_edit)
         val btnRemove: Button = itemView.findViewById(R.id.btn_remove)
     }
 
@@ -35,15 +33,11 @@ class AdminStudentAdapter(
         holder.studentName.text = "Name: ${classInfoPresences.name}"
         holder.studentEmail.text = "Email: ${classInfoPresences.email}"
 
-//        holder.btnEdit.setOnClickListener {
-//            //onEditClick(classInfoPresences)
-//        }
 
         holder.btnRemove.setOnClickListener {
             onRemoveClick(classInfoPresences)
         }
     }
 
-    // Total number of items
     override fun getItemCount(): Int = studentList.size
 }

@@ -12,14 +12,12 @@ import pt.ola.online_classes_app.R
 class AdminTeacherAdapter(
     private val context: Context,
     private val teacherList: List<TeacherInfo>,
-    //private val onEditClick: (TeacherInfo) -> Unit,
     private val onRemoveClick: (TeacherInfo) -> Unit
 ) : RecyclerView.Adapter<AdminTeacherAdapter.TeacherViewHolder>() {
 
     class TeacherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val teacherName: TextView = itemView.findViewById(R.id.teacher_name)
         val teacherEmail: TextView = itemView.findViewById(R.id.teacher_email)
-        //val btnEdit: Button = itemView.findViewById(R.id.btn_edit_teacher)
         val btnRemove: Button = itemView.findViewById(R.id.btn_remove_teacher)
     }
 
@@ -35,7 +33,6 @@ class AdminTeacherAdapter(
         holder.teacherName.text = "Name: ${teacher.name}"
         holder.teacherEmail.text = "Email: ${teacher.email}"
 
-        //holder.btnEdit.setOnClickListener { onEditClick(teacher) }
         holder.btnRemove.setOnClickListener { onRemoveClick(teacher) }
     }
 

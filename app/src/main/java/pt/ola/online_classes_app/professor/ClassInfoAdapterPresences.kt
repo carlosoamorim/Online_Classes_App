@@ -41,8 +41,8 @@ class ClassInfoAdapterPresences(
     override fun onBindViewHolder(holder: ClassInfoPresencesViewHolder, position: Int) {
         val classInfo = classList[position]
         val attendance_id = classInfo.id
-        holder.studentName.text = classInfo.studentName // Replace with student name
-        holder.studentEmail.text = classInfo.studentEmail // Replace with student email
+        holder.studentName.text = classInfo.studentName
+        holder.studentEmail.text = classInfo.studentEmail
         if (classInfo.mark == true){
             holder.presence.text = "Present"}
         else {

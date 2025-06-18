@@ -1,7 +1,6 @@
 package pt.ola.online_classes_app.admin.courses
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,16 +13,13 @@ class AdminCourseAdapter(
     private val context: Context,
     private val courseList: MutableList<CourseInfo>,
     private val onViewStudentsClick: (CourseInfo) -> Unit,
-    //private val onEditClick: (CourseInfo) -> Unit,
     private val onRemoveClick: (CourseInfo) -> Unit
 ) : RecyclerView.Adapter<AdminCourseAdapter.CourseViewHolder>() {
 
     class CourseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-       // var courseId: TextView = itemView.findViewById(R.id.course_id)
         val courseName: TextView = itemView.findViewById(R.id.course_name)
         val teacherName: TextView = itemView.findViewById(R.id.teacher_name)
         val btnViewStudents: Button = itemView.findViewById(R.id.btn_view_students)
-        //val btnEdit: Button = itemView.findViewById(R.id.btn_edit_course)
         val btnRemove: Button = itemView.findViewById(R.id.btn_remove_course)
     }
 
@@ -41,7 +37,6 @@ class AdminCourseAdapter(
             onViewStudentsClick(course)
         }
 
-        //holder.btnEdit.setOnClickListener { onEditClick(course) }
         holder.btnRemove.setOnClickListener { onRemoveClick(course) }
     }
 

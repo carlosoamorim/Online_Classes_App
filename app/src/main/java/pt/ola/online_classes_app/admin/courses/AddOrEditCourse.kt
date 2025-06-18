@@ -57,17 +57,6 @@ class AddOrEditCourse : AppCompatActivity() {
             put("teacher_id", teacherId)
         }
 
-//        val request = JsonObjectRequest(
-//            Request.Method.POST, url, jsonBody,
-//            { response ->
-//                Toast.makeText(this, "Course added!", Toast.LENGTH_SHORT).show()
-//                setResult(Activity.RESULT_OK)
-//                finish()
-//            },
-//            { error ->
-//                error.printStackTrace()
-//                Toast.makeText(this, "Failed to add course", Toast.LENGTH_SHORT).show()
-//            })
         val request = JsonObjectRequest(
             Request.Method.POST, url, jsonBody,
             { response ->

@@ -20,9 +20,9 @@ class CourseStudentListActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: StudentListAdapter
     private val studentList = mutableListOf<StudentInfo>()
-    private val enrollmentMap = mutableMapOf<Int, Int>() // studentId -> enrollmentId
+    private val enrollmentMap = mutableMapOf<Int, Int>()
 
-    private var subjectId: Int = 0 // Should be passed via intent
+    private var subjectId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

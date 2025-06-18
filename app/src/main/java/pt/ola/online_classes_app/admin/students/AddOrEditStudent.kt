@@ -17,7 +17,6 @@ class AddOrEditStudent : AppCompatActivity() {
     private lateinit var editStudentPassword: EditText
 
     private var isEditMode = false
-   // private var studentId: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,10 +29,8 @@ class AddOrEditStudent : AppCompatActivity() {
         val btnSaveStudent = findViewById<Button>(R.id.btnSaveStudent)
 
 
-        // Check if editing existing class
         if (intent.hasExtra("studentName")) {
             isEditMode = true
-            //studentId = intent.getIntExtra("studentId", -1)
             editStudentName.setText(intent.getStringExtra("studentName"))
             editStudentEmail.setText(intent.getStringExtra("studentEmail"))
             editStudentPassword.setText(intent.getStringExtra("studentPassword"))

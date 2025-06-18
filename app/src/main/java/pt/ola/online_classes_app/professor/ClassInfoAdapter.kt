@@ -37,7 +37,6 @@ class ClassInfoAdapter(
         holder.end_time.text = classInfo.end_time
         holder.auditorium.text = classInfo.auditorium
         holder.itemButton.setOnClickListener {
-            // Pass parameters to professor_check_presences
             val intent = Intent(context, professor_check_presences::class.java).apply {
                 putExtra("courseName", classInfo.subject_name)
                 putExtra("classTime", classInfo.start_time)

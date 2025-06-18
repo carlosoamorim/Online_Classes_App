@@ -21,7 +21,6 @@ class AdminAddStudent : AppCompatActivity() {
 
     private val studentList = mutableListOf<StudentInfo>()
 
-    // Launcher for adding a new class
     private val addStudentLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
@@ -32,7 +31,6 @@ class AdminAddStudent : AppCompatActivity() {
         }
     }
 
-    // Launcher for editing an existing class
     private val editStudentLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
@@ -55,7 +53,6 @@ class AdminAddStudent : AppCompatActivity() {
         adminStudentAdapter = AdminStudentAdapter(
             context = this,
             studentList = studentList,
-            //onEditClick = { classInfoPresences -> openEditStudentActivity(classInfoPresences) },
             onRemoveClick = { classInfoPresences -> removeStudent(classInfoPresences) }
         )
 
@@ -90,15 +87,6 @@ class AdminAddStudent : AppCompatActivity() {
         addStudentLauncher.launch(intent)
     }
 
-//    private fun openEditStudentActivity(classInfoPresences: StudentInfo) {
-//        val intent = Intent(this, AddOrEditStudent::class.java).apply {
-//            putExtra("studentId", studentList.indexOf(classInfoPresences))
-//            putExtra("studentName", classInfoPresences.name)
-//            putExtra("studentEmail", classInfoPresences.email)
-//            putExtra("studentPassword", classInfoPresences.password)
-//        }
-//        editStudentLauncher.launch(intent)
-//    }
 
     private fun removeStudent(classInfoPresences: StudentInfo) {
         val apiService = StudentApiService(this)

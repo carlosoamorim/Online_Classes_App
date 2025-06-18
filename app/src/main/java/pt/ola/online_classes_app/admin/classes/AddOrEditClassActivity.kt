@@ -8,7 +8,10 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import pt.ola.online_classes_app.R
+import pt.ola.online_classes_app.admin.courses.CourseInfo
 
 class AddOrEditClassActivity : AppCompatActivity() {
 
@@ -37,7 +40,6 @@ class AddOrEditClassActivity : AppCompatActivity() {
         editClassDate = findViewById(R.id.editClassDate)
 
 
-        // Check if editing existing class
         if (intent.hasExtra("className")) {
             isEditMode = true
             classId = intent.getIntExtra("classId", -1)

@@ -15,7 +15,7 @@ import pt.ola.online_classes_app.admin.teachers.TeacherInfo
 
 class TeacherApiService(private val context: Context) {
 
-    private val baseUrl = "http://10.0.2.2:8000/"  // Emulator access to localhost
+    private val baseUrl = "http://10.0.2.2:8000/"
     private val queue: RequestQueue = Volley.newRequestQueue(context)
 
     fun getTeachers(onSuccess: (List<TeacherInfo>) -> Unit, onError: (Throwable) -> Unit) {

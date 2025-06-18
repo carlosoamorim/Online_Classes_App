@@ -39,16 +39,6 @@ class AdminAddTeacher : AppCompatActivity() {
         }
     }
 
-
-    // Launcher for editing a teacher
-//    private val editTeacherLauncher = registerForActivityResult(
-//        ActivityResultContracts.StartActivityForResult()
-//    ) { result ->
-//        if (result.resultCode == Activity.RESULT_OK) {
-//            result.data?.let { handleActivityResult(it, isEdit = true) }
-//        }
-//    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_add_teacher)
@@ -63,7 +53,6 @@ class AdminAddTeacher : AppCompatActivity() {
         teacherAdapter = AdminTeacherAdapter(
             context = this,
             teacherList = teacherList,
-            //onEditClick = { openEditTeacherActivity(it) },
             onRemoveClick = { removeTeacher(it) }
         )
 
@@ -99,16 +88,6 @@ class AdminAddTeacher : AppCompatActivity() {
         val intent = Intent(this, AddOrEditTeacher::class.java)
         addTeacherLauncher.launch(intent)
     }
-
-//    private fun openEditTeacherActivity(teacherInfo: TeacherInfo) {
-//        val intent = Intent(this, AddOrEditTeacher::class.java).apply {
-//            putExtra("teacherId", teacherList.indexOf(teacherInfo))
-//            putExtra("teacherName", teacherInfo.teacherName)
-//            putExtra("teacherEmail", teacherInfo.teacherEmail)
-//            putExtra("teacherPassword", teacherInfo.teacherPassword)
-//        }
-//        editTeacherLauncher.launch(intent)
-//    }
 
     private fun removeTeacher(teacherInfo: TeacherInfo) {
         apiService.deleteTeacher(teacherInfo.email,
