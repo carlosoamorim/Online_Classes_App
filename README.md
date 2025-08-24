@@ -31,16 +31,16 @@ Main features:
    git clone https://github.com/carlosamorim/online-classes-app.git
    cd online-classes-app
 
-## How to Run backend?
-- You have to have Docker installed
+## How to Run backend
+- You must have Docker installed
 - Open terminal
 - Change the directory to "backend" - (cd backend)
 - run "docker-compose run --build"
 - Wait till it says "INFO:     Uvicorn running on http://0.0.0.0:8000"
 
-## How to Log In (innitial credentials)
-
 ---
+
+## How to Log In (innitial credentials)
 
 ### Admin
 - **Email:** `dean@uni.com`
