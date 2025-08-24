@@ -1,13 +1,11 @@
 # Online Classes App
 
-# Online Classes App 📱
-
 This project was developed as part of the **DAM (Databases and Mobile Development)** course at NOVA IMS (2024/2025).  
 It is a mobile application for managing online classes, built with a connected database and designed to support different user roles (Admin, Teacher, Student).
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 The **Online Classes App** provides a platform for organizing and managing classes, teachers, and students.  
 Main features:
 - **Admin** can:
